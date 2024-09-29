@@ -1,38 +1,53 @@
-import React from 'react';
+import { StarIcon } from '@heroicons/react/20/solid';
 
-const saleOpen = {
-  heading: 'Get 25% off during our one-time sale',
-  description:
-    "Most of our products are limited releases that won't come back. Get your favorite items while they're in stock.",
-  href: '/one-time-sale'
+const review = {
+  rating: 4,
+  content:
+    "I really loved this product, but then I took it out of the box and realized I didn't like it at all.",
+  author: 'Emily Selman',
+  avatarSrc:
+    'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80'
 };
 
-const saleClosed = {
-  heading: 'Oops, you just missed out on our big sale!',
-  description: 'Now everything you like is back at full price. Sorry!'
-};
-
-export default function Callout() {
-  const isSaleOpen = true;
-
-  return (
-    <section className='section'>
-      <div className='section-wrapper'>
-        <h2 className='section-heading'>
-          {isSaleOpen ? saleOpen.heading : saleClosed.heading}
-        </h2>
-        <p className='section-description'>
-          {isSaleOpen ? saleOpen.description : saleClosed.description}
-        </p>
-        {isSaleOpen && (
-          <a
-            href={saleOpen.href}
-            className='section-link'
-          >
-            Get access to our one-time sale
-          </a>
-        )}
+// Good review has rating >= 4
+// If no author, hide entire Review
+// If good review, show ReviewRating, otherwise hide it. In place of review content, say "No review".
+export default function GoodReview() {
+  const isGoodReview = review.rating >= 4;
+  if (!review.author) return null;
+  return review.rating >= 4 ? (
+    <div className='review'>
+      <div className='review-wrapper'>
+        <img
+          className='review-avatar'
+          src={review.avatarSrc}
+        />
+        <div className='review-left'>
+          <h4 className='review-author'>{review.author}</h4>
+          {isGoodReview ? <ReviewRating review={review} /> : null}
+        </div>
       </div>
-    </section>
+      <div className='review-content'>
+        {isGoodReview ? review.content : 'No review'}
+      </div>
+    </div>
+  ) : null;
+}
+
+function ReviewRating({ review }) {
+  const stars = Array(5).fill(false);
+  for (let i = 0; i < review.rating; i++) {
+    stars[i] = true;
+  }
+  return (
+    <div className='review-rating'>
+      {stars.map((rating) =>
+        rating ? (
+          <StarIcon className='review-star review-star--filled' />
+        ) : (
+          <StarIcon className='review-star review-star--empty' />
+        )
+      )}
+    </div>
   );
 }
