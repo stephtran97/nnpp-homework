@@ -1,23 +1,21 @@
 :root {
-  --shadow-color: 286deg 20% 43%;
-  --shadow-elevation-low: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
-    0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.34),
-    1px 2px 2.5px -2.5px hsl(var(--shadow-color) / 0.34);
-  --shadow-elevation-medium: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.36),
-    0.8px 1.6px 2px -0.8px hsl(var(--shadow-color) / 0.36),
-    2.1px 4.1px 5.2px -1.7px hsl(var(--shadow-color) / 0.36),
-    5px 10px 12.6px -2.5px hsl(var(--shadow-color) / 0.36);
-  --shadow-elevation-high: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
-    1.5px 2.9px 3.7px -0.4px hsl(var(--shadow-color) / 0.34),
-    2.7px 5.4px 6.8px -0.7px hsl(var(--shadow-color) / 0.34),
-    4.5px 8.9px 11.2px -1.1px hsl(var(--shadow-color) / 0.34),
-    7.1px 14.3px 18px -1.4px hsl(var(--shadow-color) / 0.34),
-    11.2px 22.3px 28.1px -1.8px hsl(var(--shadow-color) / 0.34),
-    17px 33.9px 42.7px -2.1px hsl(var(--shadow-color) / 0.34),
-    25px 50px 62.9px -2.5px hsl(var(--shadow-color) / 0.34);
+  --shadow-color: 5deg 37% 71%;
+  --shadow-elevation-low: 0px -0.3px 0.2px hsl(var(--shadow-color) / 0.38),
+    0px -0.4px 0.3px -2.5px hsl(var(--shadow-color) / 0.25),
+    0px -1px 0.8px -5px hsl(var(--shadow-color) / 0.13);
+  --shadow-elevation-medium: 0px -0.3px 0.2px hsl(var(--shadow-color) / 0.39),
+    0px -0.5px 0.4px -1.7px hsl(var(--shadow-color) / 0.3),
+    0px -1.6px 1.2px -3.3px hsl(var(--shadow-color) / 0.2),
+    0px -4.8px 3.6px -5px hsl(var(--shadow-color) / 0.1);
+  --shadow-elevation-high: 0px 1px 1.5px hsl(var(--shadow-color) / 0.6),
+    0px 2px 3px hsl(var(--shadow-color) / 0.4),
+    0px 4px 6px hsl(var(--shadow-color) / 0.25),
+    0px 8px 12px hsl(var(--shadow-color) / 0.15),
+    0px 16px 24px hsl(var(--shadow-color) / 0.1);
 }
 body {
-  padding: 0;
+  padding: 4px;
+  background: #ffd9d6;
 }
 html,
 body,
@@ -28,26 +26,67 @@ body,
   height: 100%;
   display: flex;
   flex-direction: column;
+  gap: 32px;
 }
-main {
+.list-wrapper {
   flex: 1;
-  display: grid;
-  place-content: center;
 }
-footer {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
+.shopping-list {
+  background: white;
+  box-shadow: var(--shadow-elevation-high);
+  border-radius: 8px;
   padding: 16px;
-  font-size: 1.25rem;
-  font-weight: 400;
+  margin: 0 auto;
+  max-width: 400px;
+  list-style-type: none;
 }
-.visually-hidden {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
+.shopping-list li {
+  padding: 8px 0px;
+  border-bottom: 1px dashed hsl(4deg 75% 65%);
+}
+.shopping-list li:first-of-type {
+  padding-top: 0;
+}
+.shopping-list li:last-of-type {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.shopping-list li::marker {
+  color: hsl(4deg 75% 65%);
+}
+.new-list-item-form {
+  background: white;
+  box-shadow: var(--shadow-elevation-high);
+  padding: 4px;
+  border-radius: 8px;
+}
+.new-list-item-form form {
+  border: 2px dashed hsl(4deg 75% 65%);
+  border-radius: 4px;
+  padding: 16px;
+  text-align: center;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+label {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+.row input,
+.row button {
+  height: 2.5rem;
+  font-size: 1.125rem;
+}
+.row input {
+  flex: 4;
+  min-width: 220px;
+}
+.row button {
+  flex: 1;
+  min-width: 90px;
 }
