@@ -1,5 +1,19 @@
+function Pricing() {
+  return (
+    <div>
+      <h2 className='title'>Simple no-tricks pricing</h2>
+      <hr />
+      <a
+        href='/buy'
+        className='button'
+      >
+        Buy Now <span aria-hidden='true'>→</span>
+      </a>
+    </div>
+  );
+}
 function App() {
-  return <h1>Override your content here</h1>;
+  return <Pricing />;
 }
 
 export default App;
